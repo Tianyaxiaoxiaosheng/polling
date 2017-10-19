@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit-1.5.xsd">
+
+
+    <!-- 创建一个connectionFactory -->
+    <rabbit:connection-factory id="rabbitConnectionFactory"
+                               host="${rabbitmq.host}" port="${rabbitmq.port}" username="${rabbitmq.username}" password="${rabbitmq.password}"
+                               virtual-host="/" />
+
+    <!-- 创建一个rabbitTemplate, 设置retryTemplate -->
+    <rabbit:template id="rabbitTemplate" connection-factory="rabbitConnectionFactory"
+                     retry-template="retryTemplate" />
+
+    <!-- 创建一个retryTemplate -->
+    <bean id="retryTemplate" class="org.springframework.retry.support.RetryTemplate">
+        <property name="backOffPolicy">
+            <bean class="org.springframework.retry.backoff.ExponentialBackOffPolicy">
+                <property name="initialInterval" value="500" />
+                <property name="multiplier" value="10.0" />
+                <property name="maxInterval" value="10000" />
+            </bean>
+        </property>
+    </bean>
+
+    <rabbit:admin connection-factory="rabbitConnectionFactory" />
+
+    <!-- 创建一个用于消息推送的队列 -->
+    <rabbit:queue id="testQueue" name="test.polling" />
+
+    <rabbit:direct-exchange name="test.exchange">
+        <rabbit:bindings>
+            <rabbit:binding queue="test.polling" key="test.binding" />
+        </rabbit:bindings>
+    </rabbit:direct-exchange>
+
+    <!-- 创建一个消息处理器 -->
+    <bean id="servicePollingHandler"
+          class="com.jony.rabbitmq.ServicePollingHandler" />
+
+    <!-- 绑定监听器和队列 -->
+    <rabbit:listener-container connection-factory="rabbitConnectionFactory">
+        <rabbit:listener ref="servicePollingHandler"
+                         method="testPollingHandle"
+                         queues="testQueue" />
+    </rabbit:listener-container>
+
+</beans>
+
