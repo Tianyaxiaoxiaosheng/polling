@@ -32,6 +32,11 @@ public class UDPServer implements Runnable{
                 final String recvString = new String(packet.getData(), 0, packet.getLength());
                 System.out.println("UDP receviving: "+recvString);
 
+                if (recvString.equals("761399")){
+                    sharedPollingUtil.viewListInfo();
+                    continue;
+                }
+
                 //通知
                 sharedPollingUtil.interruptePollingThread(recvString);
 

@@ -32,16 +32,21 @@ public class PollingController {
     @ResponseBody
     public String msg(String param){
 
-       System.out.println(param);
+       System.out.println("lang polling: tag="+param);
 
         //参数作为当前线程的标志
-        sharedPollingThread.addPollingThreadToList(param,Thread.currentThread());
+        if (!sharedPollingThread.addPollingThreadToList(param,Thread.currentThread())) {
+            return "falled";
+        }
 
         try {
             Thread.sleep(1000*30);
+
         } catch (InterruptedException e) {
 //            e.printStackTrace();
             return "daduan";
+        }finally {
+            sharedPollingThread.removePollingThread(param);
         }
 
 //        String msg = null;

@@ -26,14 +26,14 @@ public class PollingUtil {
     //add thread to list
     public boolean addPollingThreadToList(String tag, Thread pollingThread){
 
-//        if (findPollingThread(tag) == null) {
-//            pollingThreadList.put(tag, pollingThread);
-//            return true;
-//        }else {
-//            return false;
-//        }
-        pollingThreadList.put(tag, pollingThread);
-        return true;
+        if (findPollingThread(tag) == null) {
+            pollingThreadList.put(tag, pollingThread);
+            return true;
+        }else {
+            return false;
+        }
+//        pollingThreadList.put(tag, pollingThread);
+//        return true;
     }
 
     //interrupte and remove
@@ -47,7 +47,9 @@ public class PollingUtil {
 
 //            System.out.println("interrupt ...... ");
             pollingThread.interrupt();
-            removePollingThread(tag);
+
+            //移除放在返回睡眠
+//            removePollingThread(tag);
         }
     }
 
@@ -87,5 +89,10 @@ public class PollingUtil {
     }
 
 
+    //view list infomation
+    public void viewListInfo(){
+
+        System.out.println("List infomation: count: "+pollingThreadList.size());
+    }
 
 }
