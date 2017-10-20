@@ -7,10 +7,14 @@ var count = 0;
 
 //记录轮询开始时间
 
+//轮询标示
+var tag;
+
 
 $(Document).ready(function(){
 
     $("#start").click(function(){
+        tag = $("#tag").val();
         getMsg();
     });
 
@@ -27,7 +31,7 @@ function getMsg() {
         type:"post",
         global:true, //默认值，会触发全局的ajax
         async:true,
-        data:{"param":"12345"},
+        data:{"param":tag},
         success:function(data)
         {
             // if(data != null && data!="")
@@ -36,6 +40,11 @@ function getMsg() {
             var intervalTime = (new Date()).getTime() - currentTime;
 
             $("#dataShow").append("<p>第"+count+"次, data: "+data+",interval time:"+intervalTime+"</p>");
+            if (data == "falled"){
+                alert("轮询失败，该标识已被使用！");
+                return;
+
+            }
             getMsg();
         }
     });

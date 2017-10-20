@@ -32,7 +32,7 @@ public class PollingController {
     @ResponseBody
     public String msg(String param){
 
-       System.out.println("lang polling: tag="+param);
+       System.out.println("long polling: tag="+param);
 
         //参数作为当前线程的标志
         if (!sharedPollingThread.addPollingThreadToList(param,Thread.currentThread())) {
@@ -57,6 +57,12 @@ public class PollingController {
         return "server msg"+param;
     }
 
+
+    //测试设备信息获取
+    @RequestMapping(value = "/client", method = RequestMethod.GET)
+    public String client(){
+        return "client";
+    }
 
 }
 

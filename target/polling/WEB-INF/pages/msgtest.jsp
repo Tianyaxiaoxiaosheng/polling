@@ -20,6 +20,7 @@
 </p>
 
 <p>
+    <textarea rows="1" cols="10" id="tag"></textarea>
     <button type="button" id="start">开始轮询</button>
 </p>
 <p id="dataShow">轮询过程：</p>
