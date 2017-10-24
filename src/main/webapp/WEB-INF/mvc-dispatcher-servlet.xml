@@ -14,6 +14,9 @@
     <!-- 静态资源(js、image等)的访问 -->
     <mvc:default-servlet-handler/>
 
+    <mvc:resources mapping="/phone/**" location="/phone/"/>
+    <mvc:resources mapping="/js/**" location="/js/"/>
+
     <!-- 开启注解 -->
     <mvc:annotation-driven/>
 

@@ -9,10 +9,16 @@
 <html>
 <head>
     <title>设备信息获取测试</title>
-    <script src="<%=request.getContextPath()%>/js/client.js" type="text/javascript" language="JavaScript"></script>
-    <script src="<%=request.getContextPath()%>/js/jquery-3.2.1.js" type="text/javascript" language="JavaScript"></script>
+
+    <script src="js/jquery-3.2.1.js" type="text/javascript" language="JavaScript"></script>
+    <script src="js/client.js" type="text/javascript" language="JavaScript"></script>
+
+
+    <%--<script src="<%=request.getContextPath()%>/js/client.js" type="text/javascript" language="JavaScript"></script>--%>
+    <%--<script src="<%=request.getContextPath()%>/js/jquery-3.2.1.js" type="text/javascript" language="JavaScript"></script>--%>
 </head>
 <body>
+
 <button type="button" id="getInfo" onclick="getInfo()">获取设备信息</button>
 <button type="button" onclick="info2()">显示全部信息</button>
 
@@ -24,6 +30,8 @@
     信息2:
 </p>
 
-
+<p id="timer">
+tag:
+</p>
 </body>
 </html>
