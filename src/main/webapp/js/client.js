@@ -2,6 +2,7 @@
  * Created by jony on 17/10/20.
  */
 var timecount = 0;
+var interval;
 
 $(document).ready(function () {
     // $("p#showInfo").append(navigator.userAgent.toString());
@@ -30,12 +31,12 @@ $(document).ready(function () {
 
 
     if(browser.versions.mobile==true && browser.versions.iPad==false){
-        // setInterval(jumpTimer, 1000*1);
+       // interval = setInterval(jumpTimer, 1000*1);
         // alert("手机端");
     }else {
-        // alert("非手机端");
+       $("p#timer").append("非手机端");
     }
-    setInterval(jumpTimer, 1000*1);
+    interval = setInterval(jumpTimer, 1000*1);
 
 });
 
@@ -50,6 +51,9 @@ function jumpTimer() {
         // alert(window.location.host+"/polling/phone/main.jsp");
         // $(window).attr('location','http://www.jb51.net');
         // $(location).prop('href', 'http://www.jb51.net')
+
+        // 停止setInterval
+        clearInterval(interval);
     }
 }
 

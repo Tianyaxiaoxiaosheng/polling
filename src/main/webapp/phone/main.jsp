@@ -8,9 +8,45 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <%--适应手机--%>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>手机控制终端</title>
+
+        <%--网站的名字是polling，而第一个“/”表示是直接从根目录开始的--%>
+    <link rel="stylesheet" href="/polling/css/main_phone.css" type="text/css">
+    <script src="/polling/js/jquery-3.2.1.js" type="text/javascript" language="JavaScript"></script>
+    <script src="/polling/js/main.js" type="text/javascript" language="JavaScript"></script>
+
 </head>
 <body>
-手机控制终端
+
+<%--主显示区--%>
+<div class="main_detail">
+
+    <%--灯光界面--%>
+    <div class="main_detail_item" id="main_detail_item1">灯光</div>
+
+     <%--空调界面--%>
+     <div class="main_detail_item" id="main_detail_item2">空调</div>
+
+        <%--服务界面--%>
+     <div class="main_detail_item" id="main_detail_item3">服务</div>
+
+</div>
+
+<%--主导航区--%>
+<div class="main_nav">
+    <table class="main_nav_table">
+        <tr class="main_nav_tr">
+            <td class="main_nav_th" id="main_nav_item1">
+                <p class="main_nav_item_zh">灯光</p>
+                <p class="main_nav_item_en">LIGHTS</p>
+            </td>
+            <td class="main_nav_th" id="main_nav_item2">空调<br/>AIRCON</td>
+            <td class="main_nav_th" id="main_nav_item3">服务<br/>SERVICE</td>
+        </tr>
+    </table>
+</div>
+
 </body>
 </html>

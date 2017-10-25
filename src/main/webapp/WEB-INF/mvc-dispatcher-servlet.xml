@@ -16,6 +16,7 @@
 
     <mvc:resources mapping="/phone/**" location="/phone/"/>
     <mvc:resources mapping="/js/**" location="/js/"/>
+    <mvc:resources mapping="/css/**" location="/css/"/>
 
     <!-- 开启注解 -->
     <mvc:annotation-driven/>
