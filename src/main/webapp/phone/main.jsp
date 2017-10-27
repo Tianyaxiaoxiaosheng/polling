@@ -24,13 +24,33 @@
 <div class="main_detail">
 
     <%--灯光界面--%>
-    <div class="main_detail_item" id="main_detail_item1">灯光</div>
+    <div class="main_detail_item" id="lights">
+
+        <%--灯光导航--%>
+        <div class="detail_nav" id="lights_nav">
+
+            <div class="detail_nav_item">
+                <p class="detail_nav_item_zh">中文</p>
+                <p class="detail_nav_item_en">English</p>
+
+            </div>
+        </div>
+
+        <%--灯光显示--%>
+        <div class="detail_show" id="lights_show">
+
+            <div class="detail_show_item" id="detail_show_temp">
+
+            </div>
+        </div>
+
+    </div>
 
      <%--空调界面--%>
-     <div class="main_detail_item" id="main_detail_item2">空调</div>
+     <div class="main_detail_item" id="aircon">空调</div>
 
         <%--服务界面--%>
-     <div class="main_detail_item" id="main_detail_item3">服务</div>
+     <div class="main_detail_item" id="service">服务</div>
 
 </div>
 
